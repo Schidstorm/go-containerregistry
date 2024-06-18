@@ -1,6 +1,6 @@
 # `remote`
 
-[![GoDoc](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote?status.svg)](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote)
+[![GoDoc](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote?status.svg)](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote)
 
 The `remote` package implements a client for accessing a registry,
 per the [OCI distribution spec](https://github.com/opencontainers/distribution-spec/blob/master/spec.md).
@@ -14,9 +14,9 @@ authentication handshake and structured errors.
 package main
 
 import (
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/pkg/authn"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
 )
 
 func main() {
@@ -102,16 +102,16 @@ and we need to upload the config file before the manifest.
 Sometimes, we know all of this information ahead of time, (e.g. when copying from remote.Image),
 so the ordering is less important.
 
-In other cases, e.g. when using a [`stream.Layer`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/stream#Layer),
+In other cases, e.g. when using a [`stream.Layer`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/stream#Layer),
 we can't compute anything until we have already uploaded the layer, so we need to be careful about ordering.
 
 ## Caveats
 
 ### schema 1
 
-This package does not support schema 1 images, see [`#377`](https://github.com/google/go-containerregistry/issues/377),
-however, it's possible to do _something_ useful with them via [`remote.Get`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote#Get),
+This package does not support schema 1 images, see [`#377`](https://github.com/schidstorm/go-containerregistry/issues/377),
+however, it's possible to do _something_ useful with them via [`remote.Get`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote#Get),
 which doesn't try to interpret what is returned by the registry.
 
-[`crane.Copy`](https://godoc.org/github.com/google/go-containerregistry/pkg/crane#Copy) takes advantage of this to implement support for copying schema 1 images,
-see [here](https://github.com/google/go-containerregistry/blob/main/pkg/internal/legacy/copy.go).
+[`crane.Copy`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/crane#Copy) takes advantage of this to implement support for copying schema 1 images,
+see [here](https://github.com/schidstorm/go-containerregistry/blob/main/pkg/internal/legacy/copy.go).

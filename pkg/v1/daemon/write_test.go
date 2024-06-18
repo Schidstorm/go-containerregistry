@@ -24,9 +24,9 @@ import (
 
 	"github.com/docker/docker/api/types"
 
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/empty"
-	"github.com/google/go-containerregistry/pkg/v1/tarball"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/empty"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/tarball"
 )
 
 type errReader struct {

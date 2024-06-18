@@ -20,15 +20,15 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/google/go-containerregistry/internal/compare"
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/registry"
-	"github.com/google/go-containerregistry/pkg/v1/empty"
-	"github.com/google/go-containerregistry/pkg/v1/mutate"
-	"github.com/google/go-containerregistry/pkg/v1/partial"
-	"github.com/google/go-containerregistry/pkg/v1/random"
-	"github.com/google/go-containerregistry/pkg/v1/types"
-	"github.com/google/go-containerregistry/pkg/v1/validate"
+	"github.com/schidstorm/go-containerregistry/internal/compare"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	"github.com/schidstorm/go-containerregistry/pkg/registry"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/empty"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/mutate"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/partial"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/random"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/types"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/validate"
 )
 
 func TestRemoteLayer(t *testing.T) {

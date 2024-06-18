@@ -20,9 +20,9 @@ import (
 	"io"
 	"strings"
 
-	"github.com/google/go-containerregistry/pkg/crane"
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/pkg/crane"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
 	"github.com/spf13/cobra"
 )
 

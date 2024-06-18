@@ -22,8 +22,8 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/logs"
+	"github.com/schidstorm/go-containerregistry/pkg/authn"
+	"github.com/schidstorm/go-containerregistry/pkg/logs"
 	"golang.org/x/oauth2"
 	googauth "golang.org/x/oauth2/google"
 )

@@ -11,12 +11,12 @@ so this may break in the future.
 
 ## Installation
 
-Download [latest release](https://github.com/google/go-containerregistry/releases/latest).
+Download [latest release](https://github.com/schidstorm/go-containerregistry/releases/latest).
 
 Install manually:
 
 ```
-go install github.com/google/go-containerregistry/cmd/gcrane@latest
+go install github.com/schidstorm/go-containerregistry/cmd/gcrane@latest
 ```
 
 ## Commands

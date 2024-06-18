@@ -1,6 +1,6 @@
 # `tarball`
 
-[![GoDoc](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/tarball?status.svg)](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/tarball)
+[![GoDoc](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/tarball?status.svg)](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/tarball)
 
 This package produces tarballs that can consumed via `docker load`. Note
 that this is a _different_ format from the [`legacy`](/pkg/legacy/tarball)
@@ -15,8 +15,8 @@ package main
 import (
 	"os"
 
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/tarball"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/tarball"
 )
 
 func main() {
@@ -74,7 +74,7 @@ ubuntu/
 
 There are a couple interesting files here.
 
-`manifest.json` is the entrypoint: a list of [`tarball.Descriptor`s](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/tarball#Descriptor)
+`manifest.json` is the entrypoint: a list of [`tarball.Descriptor`s](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/tarball#Descriptor)
 that describe the images contained in this tarball.
 
 For each image, this has the `RepoTags` (how it was pulled), a `Config` file

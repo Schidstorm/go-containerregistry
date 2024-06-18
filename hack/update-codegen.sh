@@ -20,7 +20,7 @@ set -o pipefail
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BOILER_PLATE_FILE="${PROJECT_ROOT}/hack/boilerplate/boilerplate.go.txt"
-MODULE_NAME=github.com/google/go-containerregistry
+MODULE_NAME=github.com/schidstorm/go-containerregistry
 
 pushd ${PROJECT_ROOT}
 trap popd EXIT

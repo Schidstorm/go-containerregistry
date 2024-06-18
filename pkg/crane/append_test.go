@@ -17,10 +17,10 @@ package crane_test
 import (
 	"testing"
 
-	"github.com/google/go-containerregistry/pkg/crane"
-	"github.com/google/go-containerregistry/pkg/v1/empty"
-	"github.com/google/go-containerregistry/pkg/v1/mutate"
-	"github.com/google/go-containerregistry/pkg/v1/types"
+	"github.com/schidstorm/go-containerregistry/pkg/crane"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/empty"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/mutate"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/types"
 )
 
 func TestAppendWithOCIBaseImage(t *testing.T) {

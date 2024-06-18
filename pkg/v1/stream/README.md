@@ -1,9 +1,9 @@
 # `stream`
 
-[![GoDoc](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/stream?status.svg)](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/stream)
+[![GoDoc](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/stream?status.svg)](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/stream)
 
 The `stream` package contains an implementation of
-[`v1.Layer`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1#Layer)
+[`v1.Layer`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1#Layer)
 that supports _streaming_ access, i.e. the layer contents are read once and not
 buffered.
 
@@ -15,9 +15,9 @@ package main
 import (
 	"os"
 
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
-	"github.com/google/go-containerregistry/pkg/v1/stream"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/stream"
 )
 
 // upload the contents of stdin as a layer to a local registry

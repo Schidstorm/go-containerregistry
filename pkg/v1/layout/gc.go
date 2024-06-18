@@ -21,7 +21,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	v1 "github.com/google/go-containerregistry/pkg/v1"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
 )
 
 // GarbageCollect removes unreferenced blobs from the oci-layout

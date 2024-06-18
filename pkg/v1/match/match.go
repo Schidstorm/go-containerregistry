@@ -16,8 +16,8 @@
 package match
 
 import (
-	v1 "github.com/google/go-containerregistry/pkg/v1"
 	imagespec "github.com/opencontainers/image-spec/specs-go/v1"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
 )
 
 // Matcher function that is given a v1.Descriptor, and returns whether or

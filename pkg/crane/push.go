@@ -17,10 +17,10 @@ package crane
 import (
 	"fmt"
 
-	"github.com/google/go-containerregistry/pkg/name"
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
-	"github.com/google/go-containerregistry/pkg/v1/tarball"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/tarball"
 )
 
 // Load reads the tarball at path as a v1.Image.

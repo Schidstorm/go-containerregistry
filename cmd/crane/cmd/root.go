@@ -26,10 +26,10 @@ import (
 	"sync"
 
 	"github.com/docker/cli/cli/config"
-	"github.com/google/go-containerregistry/internal/cmd"
-	"github.com/google/go-containerregistry/pkg/crane"
-	"github.com/google/go-containerregistry/pkg/logs"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/internal/cmd"
+	"github.com/schidstorm/go-containerregistry/pkg/crane"
+	"github.com/schidstorm/go-containerregistry/pkg/logs"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
 	"github.com/spf13/cobra"
 )
 

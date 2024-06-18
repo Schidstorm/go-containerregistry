@@ -20,13 +20,13 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/empty"
-	"github.com/google/go-containerregistry/pkg/v1/mutate"
-	"github.com/google/go-containerregistry/pkg/v1/partial"
-	"github.com/google/go-containerregistry/pkg/v1/random"
-	"github.com/google/go-containerregistry/pkg/v1/types"
-	"github.com/google/go-containerregistry/pkg/v1/validate"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/empty"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/mutate"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/partial"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/random"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/types"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/validate"
 )
 
 func TestAppendIndex(t *testing.T) {

@@ -23,9 +23,9 @@ import (
 	"path"
 	"strings"
 
-	"github.com/google/go-containerregistry/internal/gzip"
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/tarball"
+	"github.com/schidstorm/go-containerregistry/internal/gzip"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/tarball"
 )
 
 // userOwnerAndGroupSID is a magic value needed to make the binary executable

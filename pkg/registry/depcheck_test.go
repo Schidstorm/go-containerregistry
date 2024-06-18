@@ -17,7 +17,7 @@ package registry
 import (
 	"testing"
 
-	"github.com/google/go-containerregistry/internal/depcheck"
+	"github.com/schidstorm/go-containerregistry/internal/depcheck"
 )
 
 func TestDeps(t *testing.T) {
@@ -25,14 +25,14 @@ func TestDeps(t *testing.T) {
 		t.Skip("skipping slow depcheck")
 	}
 	depcheck.AssertOnlyDependencies(t, map[string][]string{
-		"github.com/google/go-containerregistry/pkg/registry": append(
+		"github.com/schidstorm/go-containerregistry/pkg/registry": append(
 			depcheck.StdlibPackages(),
-			"github.com/google/go-containerregistry/internal/httptest",
-			"github.com/google/go-containerregistry/pkg/v1",
-			"github.com/google/go-containerregistry/pkg/v1/types",
+			"github.com/schidstorm/go-containerregistry/internal/httptest",
+			"github.com/schidstorm/go-containerregistry/pkg/v1",
+			"github.com/schidstorm/go-containerregistry/pkg/v1/types",
 
-			"github.com/google/go-containerregistry/internal/verify",
-			"github.com/google/go-containerregistry/internal/and",
+			"github.com/schidstorm/go-containerregistry/internal/verify",
+			"github.com/schidstorm/go-containerregistry/internal/and",
 		),
 	})
 }

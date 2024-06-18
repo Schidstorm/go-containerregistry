@@ -534,7 +534,7 @@
 <!-- github.com/google/go&#45;containerregistry/pkg/authn -->
 <g id="node23" class="node">
 <title>github.com/google/go&#45;containerregistry/pkg/authn</title>
-<g id="a_node23"><a xlink:href="https://godoc.org/github.com/google/go-containerregistry/pkg/authn" xlink:title="github.com/google/go&#45;containerregistry/pkg/authn" target="_blank">
+<g id="a_node23"><a xlink:href="https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/authn" xlink:title="github.com/google/go&#45;containerregistry/pkg/authn" target="_blank">
 <path fill="#afeeee" stroke="#afeeee" d="M1303,-600C1303,-600 1037,-600 1037,-600 1031,-600 1025,-594 1025,-588 1025,-588 1025,-576 1025,-576 1025,-570 1031,-564 1037,-564 1037,-564 1303,-564 1303,-564 1309,-564 1315,-570 1315,-576 1315,-576 1315,-588 1315,-588 1315,-594 1309,-600 1303,-600"/>
 <text text-anchor="middle" x="1170" y="-578.3" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/google/go&#45;containerregistry/pkg/authn</text>
 </a>
@@ -567,7 +567,7 @@
 <!-- github.com/google/go&#45;containerregistry/pkg/logs -->
 <g id="node24" class="node">
 <title>github.com/google/go&#45;containerregistry/pkg/logs</title>
-<g id="a_node24"><a xlink:href="https://godoc.org/github.com/google/go-containerregistry/pkg/logs" xlink:title="github.com/google/go&#45;containerregistry/pkg/logs" target="_blank">
+<g id="a_node24"><a xlink:href="https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/logs" xlink:title="github.com/google/go&#45;containerregistry/pkg/logs" target="_blank">
 <path fill="#afeeee" stroke="#afeeee" d="M1630.5,-506C1630.5,-506 1371.5,-506 1371.5,-506 1365.5,-506 1359.5,-500 1359.5,-494 1359.5,-494 1359.5,-482 1359.5,-482 1359.5,-476 1365.5,-470 1371.5,-470 1371.5,-470 1630.5,-470 1630.5,-470 1636.5,-470 1642.5,-476 1642.5,-482 1642.5,-482 1642.5,-494 1642.5,-494 1642.5,-500 1636.5,-506 1630.5,-506"/>
 <text text-anchor="middle" x="1501" y="-484.3" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/google/go&#45;containerregistry/pkg/logs</text>
 </a>
@@ -582,7 +582,7 @@
 <!-- github.com/google/go&#45;containerregistry/pkg/name -->
 <g id="node25" class="node">
 <title>github.com/google/go&#45;containerregistry/pkg/name</title>
-<g id="a_node25"><a xlink:href="https://godoc.org/github.com/google/go-containerregistry/pkg/name" xlink:title="github.com/google/go&#45;containerregistry/pkg/name" target="_blank">
+<g id="a_node25"><a xlink:href="https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/name" xlink:title="github.com/google/go&#45;containerregistry/pkg/name" target="_blank">
 <path fill="#afeeee" stroke="#afeeee" d="M2106,-506C2106,-506 1840,-506 1840,-506 1834,-506 1828,-500 1828,-494 1828,-494 1828,-482 1828,-482 1828,-476 1834,-470 1840,-470 1840,-470 2106,-470 2106,-470 2112,-470 2118,-476 2118,-482 2118,-482 2118,-494 2118,-494 2118,-500 2112,-506 2106,-506"/>
 <text text-anchor="middle" x="1973" y="-484.3" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/google/go&#45;containerregistry/pkg/name</text>
 </a>
@@ -690,7 +690,7 @@
 <!-- github.com/google/go&#45;containerregistry/pkg/internal/retry -->
 <g id="node26" class="node">
 <title>github.com/google/go&#45;containerregistry/pkg/internal/retry</title>
-<g id="a_node26"><a xlink:href="https://godoc.org/github.com/google/go-containerregistry/pkg/internal/retry" xlink:title="github.com/google/go&#45;containerregistry/pkg/internal/retry" target="_blank">
+<g id="a_node26"><a xlink:href="https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/internal/retry" xlink:title="github.com/google/go&#45;containerregistry/pkg/internal/retry" target="_blank">
 <path fill="#afeeee" stroke="#afeeee" d="M2744.5,-600C2744.5,-600 2437.5,-600 2437.5,-600 2431.5,-600 2425.5,-594 2425.5,-588 2425.5,-588 2425.5,-576 2425.5,-576 2425.5,-570 2431.5,-564 2437.5,-564 2437.5,-564 2744.5,-564 2744.5,-564 2750.5,-564 2756.5,-570 2756.5,-576 2756.5,-576 2756.5,-588 2756.5,-588 2756.5,-594 2750.5,-600 2744.5,-600"/>
 <text text-anchor="middle" x="2591" y="-578.3" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/google/go&#45;containerregistry/pkg/internal/retry</text>
 </a>
@@ -711,7 +711,7 @@
 <!-- github.com/google/go&#45;containerregistry/pkg/internal/retry/wait -->
 <g id="node27" class="node">
 <title>github.com/google/go&#45;containerregistry/pkg/internal/retry/wait</title>
-<g id="a_node27"><a xlink:href="https://godoc.org/github.com/google/go-containerregistry/pkg/internal/retry/wait" xlink:title="github.com/google/go&#45;containerregistry/pkg/internal/retry/wait" target="_blank">
+<g id="a_node27"><a xlink:href="https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/internal/retry/wait" xlink:title="github.com/google/go&#45;containerregistry/pkg/internal/retry/wait" target="_blank">
 <path fill="#afeeee" stroke="#afeeee" d="M2915,-506C2915,-506 2581,-506 2581,-506 2575,-506 2569,-500 2569,-494 2569,-494 2569,-482 2569,-482 2569,-476 2575,-470 2581,-470 2581,-470 2915,-470 2915,-470 2921,-470 2927,-476 2927,-482 2927,-482 2927,-494 2927,-494 2927,-500 2921,-506 2915,-506"/>
 <text text-anchor="middle" x="2748" y="-484.3" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/google/go&#45;containerregistry/pkg/internal/retry/wait</text>
 </a>
@@ -762,7 +762,7 @@
 <!-- github.com/google/go&#45;containerregistry/pkg/v1/remote/transport -->
 <g id="node35" class="node">
 <title>github.com/google/go&#45;containerregistry/pkg/v1/remote/transport</title>
-<g id="a_node35"><a xlink:href="https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote/transport" xlink:title="github.com/google/go&#45;containerregistry/pkg/v1/remote/transport" target="_blank">
+<g id="a_node35"><a xlink:href="https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote/transport" xlink:title="github.com/google/go&#45;containerregistry/pkg/v1/remote/transport" target="_blank">
 <path fill="#afeeee" stroke="#afeeee" d="M2288,-694C2288,-694 1944,-694 1944,-694 1938,-694 1932,-688 1932,-682 1932,-682 1932,-670 1932,-670 1932,-664 1938,-658 1944,-658 1944,-658 2288,-658 2288,-658 2294,-658 2300,-664 2300,-670 2300,-670 2300,-682 2300,-682 2300,-688 2294,-694 2288,-694"/>
 <text text-anchor="middle" x="2116" y="-672.3" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/google/go&#45;containerregistry/pkg/v1/remote/transport</text>
 </a>

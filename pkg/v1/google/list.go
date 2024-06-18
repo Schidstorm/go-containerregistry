@@ -24,10 +24,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/logs"
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/remote/transport"
+	"github.com/schidstorm/go-containerregistry/pkg/authn"
+	"github.com/schidstorm/go-containerregistry/pkg/logs"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote/transport"
 )
 
 // Option is a functional option for List and Walk.
@@ -96,7 +96,7 @@ func (l *lister) list(repo name.Repository) (*Tags, error) {
 	}
 
 	// ECR returns an error if n > 1000:
-	// https://github.com/google/go-containerregistry/issues/681
+	// https://github.com/schidstorm/go-containerregistry/issues/681
 	if !isGoogle(repo.RegistryStr()) {
 		uri.RawQuery = "n=1000"
 	}

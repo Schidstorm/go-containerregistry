@@ -19,11 +19,11 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/google/go-containerregistry/pkg/logs"
-	"github.com/google/go-containerregistry/pkg/name"
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/partial"
-	"github.com/google/go-containerregistry/pkg/v1/types"
+	"github.com/schidstorm/go-containerregistry/pkg/logs"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/partial"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/types"
 )
 
 var allManifestMediaTypes = append(append([]types.MediaType{
@@ -33,8 +33,8 @@ var allManifestMediaTypes = append(append([]types.MediaType{
 
 // ErrSchema1 indicates that we received a schema1 manifest from the registry.
 // This library doesn't have plans to support this legacy image format:
-// https://github.com/google/go-containerregistry/issues/377
-var ErrSchema1 = errors.New("see https://github.com/google/go-containerregistry/issues/377")
+// https://github.com/schidstorm/go-containerregistry/issues/377
+var ErrSchema1 = errors.New("see https://github.com/schidstorm/go-containerregistry/issues/377")
 
 // newErrSchema1 returns an ErrSchema1 with the unexpected MediaType.
 func newErrSchema1(schema types.MediaType) error {
@@ -109,7 +109,7 @@ func (d *Descriptor) Image() (v1.Image, error) {
 	switch d.MediaType {
 	case types.DockerManifestSchema1, types.DockerManifestSchema1Signed:
 		// We don't care to support schema 1 images:
-		// https://github.com/google/go-containerregistry/issues/377
+		// https://github.com/schidstorm/go-containerregistry/issues/377
 		return nil, newErrSchema1(d.MediaType)
 	case types.OCIImageIndex, types.DockerManifestList:
 		// We want an image but the registry has an index, resolve it to an image.
@@ -160,7 +160,7 @@ func (d *Descriptor) ImageIndex() (v1.ImageIndex, error) {
 	switch d.MediaType {
 	case types.DockerManifestSchema1, types.DockerManifestSchema1Signed:
 		// We don't care to support schema 1 images:
-		// https://github.com/google/go-containerregistry/issues/377
+		// https://github.com/schidstorm/go-containerregistry/issues/377
 		return nil, newErrSchema1(d.MediaType)
 	case types.OCIManifestSchema1, types.DockerManifestSchema2:
 		// We want an index but the registry has an image, nothing we can do.

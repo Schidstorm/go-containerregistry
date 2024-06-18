@@ -1,10 +1,10 @@
 # `transport`
 
-[![GoDoc](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/transport?status.svg)](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/transport)
+[![GoDoc](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/transport?status.svg)](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/transport)
 
 The [distribution protocol](https://github.com/opencontainers/distribution-spec) is fairly simple, but correctly [implementing authentication](../../../authn/README.md) is **hard**.
 
-This package [implements](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote/transport#New) an [`http.RoundTripper`](https://godoc.org/net/http#RoundTripper)
+This package [implements](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote/transport#New) an [`http.RoundTripper`](https://godoc.org/net/http#RoundTripper)
 that transparently performs:
 * [Token
 Authentication](https://docs.docker.com/registry/spec/auth/token/) and
@@ -59,16 +59,16 @@ interacting with a registry.
 ## Usage
 
 This is heavily used by the
-[`remote`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote)
+[`remote`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote)
 package, which implements higher level image-centric functionality, but this
 package is useful if you want to interact directly with the registry to do
 something that `remote` doesn't support, e.g. [to handle with schema 1
-images](https://github.com/google/go-containerregistry/pull/509).
+images](https://github.com/schidstorm/go-containerregistry/pull/509).
 
 This package also includes some [error
 handling](https://github.com/opencontainers/distribution-spec/blob/60be706c34ee7805bdd1d3d11affec53b0dfb8fb/spec.md#errors)
 facilities in the form of
-[`CheckError`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote/transport#CheckError),
+[`CheckError`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote/transport#CheckError),
 which will parse the response body into a structured error for unexpected http
 status codes.
 
@@ -85,9 +85,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/remote/transport"
+	"github.com/schidstorm/go-containerregistry/pkg/authn"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote/transport"
 )
 
 func main() {

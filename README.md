@@ -1,7 +1,7 @@
 # go-containerregistry
 
-[![GitHub Actions Build Status](https://github.com/google/go-containerregistry/workflows/Build/badge.svg)](https://github.com/google/go-containerregistry/actions?query=workflow%3ABuild)
-[![GoDoc](https://godoc.org/github.com/google/go-containerregistry?status.svg)](https://godoc.org/github.com/google/go-containerregistry)
+[![GitHub Actions Build Status](https://github.com/schidstorm/go-containerregistry/workflows/Build/badge.svg)](https://github.com/schidstorm/go-containerregistry/actions?query=workflow%3ABuild)
+[![GoDoc](https://godoc.org/github.com/schidstorm/go-containerregistry?status.svg)](https://godoc.org/github.com/schidstorm/go-containerregistry)
 [![Code Coverage](https://codecov.io/gh/google/go-containerregistry/branch/main/graph/badge.svg)](https://codecov.io/gh/google/go-containerregistry)
 
 ## Introduction
@@ -15,9 +15,9 @@ The following diagram shows the main types that this library handles.
 ## Philosophy
 
 The overarching design philosophy of this library is to define interfaces that present an immutable
-view of resources (e.g. [`Image`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1#Image),
-[`Layer`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1#Layer),
-[`ImageIndex`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1#ImageIndex)),
+view of resources (e.g. [`Image`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1#Image),
+[`Layer`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1#Layer),
+[`ImageIndex`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1#ImageIndex)),
 which can be backed by a variety of medium (e.g. [registry](./pkg/v1/remote/README.md),
 [tarball](./pkg/v1/tarball/README.md), [daemon](./pkg/v1/daemon/README.md), ...).
 
@@ -43,45 +43,45 @@ Over time, we will add new functionality under experimental environment variable
 
 #### Sources
 
-* [`remote.Image`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote#Image)
-* [`tarball.Image`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/tarball#Image)
-* [`daemon.Image`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/daemon#Image)
-* [`layout.Image`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/layout#Path.Image)
-* [`random.Image`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/random#Image)
+* [`remote.Image`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote#Image)
+* [`tarball.Image`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/tarball#Image)
+* [`daemon.Image`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/daemon#Image)
+* [`layout.Image`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/layout#Path.Image)
+* [`random.Image`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/random#Image)
 
 #### Sinks
 
-* [`remote.Write`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote#Write)
-* [`tarball.Write`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/tarball#Write)
-* [`daemon.Write`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/daemon#Write)
-* [`legacy/tarball.Write`](https://godoc.org/github.com/google/go-containerregistry/pkg/legacy/tarball#Write)
-* [`layout.AppendImage`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/layout#Path.AppendImage)
+* [`remote.Write`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote#Write)
+* [`tarball.Write`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/tarball#Write)
+* [`daemon.Write`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/daemon#Write)
+* [`legacy/tarball.Write`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/legacy/tarball#Write)
+* [`layout.AppendImage`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/layout#Path.AppendImage)
 
 ### `v1.ImageIndex`
 
 #### Sources
 
-* [`remote.Index`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote#Index)
-* [`random.Index`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/random#Index)
-* [`layout.ImageIndexFromPath`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/layout#ImageIndexFromPath)
+* [`remote.Index`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote#Index)
+* [`random.Index`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/random#Index)
+* [`layout.ImageIndexFromPath`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/layout#ImageIndexFromPath)
 
 #### Sinks
 
-* [`remote.WriteIndex`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote#WriteIndex)
-* [`layout.Write`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/layout#Write)
+* [`remote.WriteIndex`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote#WriteIndex)
+* [`layout.Write`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/layout#Write)
 
 ### `v1.Layer`
 
 #### Sources
 
-* [`remote.Layer`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote#Layer)
-* [`tarball.LayerFromFile`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/tarball#LayerFromFile)
-* [`random.Layer`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/random#Layer)
-* [`stream.Layer`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/stream#Layer)
+* [`remote.Layer`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote#Layer)
+* [`tarball.LayerFromFile`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/tarball#LayerFromFile)
+* [`random.Layer`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/random#Layer)
+* [`stream.Layer`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/stream#Layer)
 
 #### Sinks
 
-* [`remote.WriteLayer`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote#WriteLayer)
+* [`remote.WriteLayer`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote#WriteLayer)
 
 ## Overview
 

@@ -15,7 +15,7 @@
 package cmd
 
 import (
-	"github.com/google/go-containerregistry/pkg/crane"
+	"github.com/schidstorm/go-containerregistry/pkg/crane"
 	"github.com/spf13/cobra"
 )
 

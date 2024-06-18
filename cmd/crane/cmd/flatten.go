@@ -20,15 +20,15 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/google/go-containerregistry/pkg/crane"
-	"github.com/google/go-containerregistry/pkg/logs"
-	"github.com/google/go-containerregistry/pkg/name"
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/empty"
-	"github.com/google/go-containerregistry/pkg/v1/mutate"
-	"github.com/google/go-containerregistry/pkg/v1/partial"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
-	"github.com/google/go-containerregistry/pkg/v1/stream"
+	"github.com/schidstorm/go-containerregistry/pkg/crane"
+	"github.com/schidstorm/go-containerregistry/pkg/logs"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/empty"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/mutate"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/partial"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/stream"
 	"github.com/spf13/cobra"
 )
 
@@ -144,7 +144,7 @@ func flattenIndex(old v1.ImageIndex, repo name.Repository, use string, o crane.O
 		}
 
 		// Drop attestations (for now).
-		// https://github.com/google/go-containerregistry/issues/1622
+		// https://github.com/schidstorm/go-containerregistry/issues/1622
 		if p := desc.Platform; p != nil {
 			if p.OS == "unknown" && p.Architecture == "unknown" {
 				continue

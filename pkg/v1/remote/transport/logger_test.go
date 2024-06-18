@@ -23,8 +23,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/go-containerregistry/internal/redact"
-	"github.com/google/go-containerregistry/pkg/logs"
+	"github.com/schidstorm/go-containerregistry/internal/redact"
+	"github.com/schidstorm/go-containerregistry/pkg/logs"
 )
 
 func TestLogger(t *testing.T) {

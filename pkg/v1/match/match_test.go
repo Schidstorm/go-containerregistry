@@ -17,10 +17,10 @@ package match_test
 import (
 	"testing"
 
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/match"
-	"github.com/google/go-containerregistry/pkg/v1/types"
 	imagespec "github.com/opencontainers/image-spec/specs-go/v1"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/match"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/types"
 )
 
 func TestName(t *testing.T) {

@@ -23,13 +23,13 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/google/go-containerregistry/internal/redact"
-	"github.com/google/go-containerregistry/internal/verify"
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/name"
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/remote/transport"
-	"github.com/google/go-containerregistry/pkg/v1/types"
+	"github.com/schidstorm/go-containerregistry/internal/redact"
+	"github.com/schidstorm/go-containerregistry/internal/verify"
+	"github.com/schidstorm/go-containerregistry/pkg/authn"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote/transport"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/types"
 )
 
 const (

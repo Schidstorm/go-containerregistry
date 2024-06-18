@@ -1,6 +1,6 @@
 # `k8schain`
 
-This is an implementation of the [`authn.Keychain`](https://godoc.org/github.com/google/go-containerregistry/authn#Keychain) interface loosely based on the authentication semantics used by the Kubelet when performing the pull of a Pod's images.
+This is an implementation of the [`authn.Keychain`](https://godoc.org/github.com/schidstorm/go-containerregistry/authn#Keychain) interface loosely based on the authentication semantics used by the Kubelet when performing the pull of a Pod's images.
 
 This keychain supports passing a Kubernetes Service Account and some ImagePullSecrets which may represent registry credentials.
 
@@ -10,7 +10,7 @@ This means that if the keychain is used from within Kubernetes services on those
 In general this keychain should be used when the code is expected to run in a Kubernetes cluster, and especially when it will run in one of those clouds.
 To get a cloud-agnostic keychain, use [`pkg/authn/kubernetes`](../kubernetes) instead.
 
-To get only cloud-aware keychains, use [`google.Keychain`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/google#Keychain), or [`pkg/authn.NewKeychainFromHelper`](https://godoc.org/github.com/google/go-containerregistry/pkg/authn#NewKeychainFromHelper) with a cloud credential helper implementation -- see the implementation of `k8schain.NewNoClient` for more details.
+To get only cloud-aware keychains, use [`google.Keychain`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/google#Keychain), or [`pkg/authn.NewKeychainFromHelper`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/authn#NewKeychainFromHelper) with a cloud credential helper implementation -- see the implementation of `k8schain.NewNoClient` for more details.
 
 ## Usage
 
@@ -39,7 +39,7 @@ if err != nil {
 }
 ```
 
-Or, with the [`remote.WithAuthFromKeychain`](https://pkg.go.dev/github.com/google/go-containerregistry/pkg/v1/remote#WithAuthFromKeychain) option:
+Or, with the [`remote.WithAuthFromKeychain`](https://pkg.go.dev/github.com/schidstorm/go-containerregistry/pkg/v1/remote#WithAuthFromKeychain) option:
 
 ```go
 img, err := remote.Image(ref, remote.WithAuthFromKeychain(kc))

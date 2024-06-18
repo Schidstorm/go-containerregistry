@@ -1,6 +1,6 @@
 # `partial`
 
-[![GoDoc](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/partial?status.svg)](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/partial)
+[![GoDoc](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/partial?status.svg)](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/partial)
 
 ## Partial Implementations
 
@@ -40,7 +40,7 @@ type UncompressedImageCore interface {
 
 Where possible, we access some information via optional methods as an optimization.
 
-### [`partial.Descriptor`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/partial#Descriptor)
+### [`partial.Descriptor`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/partial#Descriptor)
 
 There are some properties of a [`Descriptor`](https://github.com/opencontainers/image-spec/blob/master/descriptor.md#properties) that aren't derivable from just image data:
 
@@ -54,18 +54,18 @@ an entire layer descriptor with `URLs` information for foreign layers. This
 information can be passed through to callers by implementing this optional
 `Descriptor` method.
 
-See [`#654`](https://github.com/google/go-containerregistry/pull/654).
+See [`#654`](https://github.com/schidstorm/go-containerregistry/pull/654).
 
-### [`partial.UncompressedSize`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/partial#UncompressedSize)
+### [`partial.UncompressedSize`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/partial#UncompressedSize)
 
 Usually, you don't need to know the uncompressed size of a layer, since that
 information isn't stored in a config file (just he sha256 is needed); however,
 there are cases where it is very helpful to know the layer size, e.g. when
 writing the uncompressed layer into a tarball.
 
-See [`#655`](https://github.com/google/go-containerregistry/pull/655).
+See [`#655`](https://github.com/schidstorm/go-containerregistry/pull/655).
 
-### [`partial.Exists`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/partial#Exists)
+### [`partial.Exists`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/partial#Exists)
 
 We generally don't care about the existence of something as granular as a
 layer, and would rather ensure all the invariants of an image are upheld via
@@ -79,4 +79,4 @@ The `remote` package implements this via `HEAD` requests.
 
 The `layout` package implements this via `os.Stat`.
 
-See [`#838`](https://github.com/google/go-containerregistry/pull/838).
+See [`#838`](https://github.com/schidstorm/go-containerregistry/pull/838).

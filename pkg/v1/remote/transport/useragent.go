@@ -22,7 +22,7 @@ import (
 
 var (
 	// Version can be set via:
-	// -ldflags="-X 'github.com/google/go-containerregistry/pkg/v1/remote/transport.Version=$TAG'"
+	// -ldflags="-X 'github.com/schidstorm/go-containerregistry/pkg/v1/remote/transport.Version=$TAG'"
 	Version string
 
 	ggcrVersion = defaultUserAgent
@@ -30,7 +30,7 @@ var (
 
 const (
 	defaultUserAgent = "go-containerregistry"
-	moduleName       = "github.com/google/go-containerregistry"
+	moduleName       = "github.com/schidstorm/go-containerregistry"
 )
 
 type userAgentTransport struct {

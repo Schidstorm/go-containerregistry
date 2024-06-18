@@ -26,12 +26,12 @@ import (
 	"path/filepath"
 	"sync"
 
-	comp "github.com/google/go-containerregistry/internal/compression"
-	"github.com/google/go-containerregistry/pkg/compression"
-	"github.com/google/go-containerregistry/pkg/name"
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/partial"
-	"github.com/google/go-containerregistry/pkg/v1/types"
+	comp "github.com/schidstorm/go-containerregistry/internal/compression"
+	"github.com/schidstorm/go-containerregistry/pkg/compression"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/partial"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/types"
 )
 
 type image struct {
@@ -303,7 +303,7 @@ func (i *uncompressedImage) LayerByDiffID(h v1.Hash) (partial.UncompressedLayer,
 			if ok {
 				// This is janky, but we don't want to implement Descriptor for
 				// uncompressed layers because it breaks a bunch of assumptions in partial.
-				// See https://github.com/google/go-containerregistry/issues/1870
+				// See https://github.com/schidstorm/go-containerregistry/issues/1870
 				docker25workaround := bd.MediaType == types.DockerUncompressedLayer || bd.MediaType == types.OCIUncompressedLayer
 
 				if !docker25workaround {

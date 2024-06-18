@@ -17,8 +17,8 @@ package crane
 import (
 	"context"
 
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
 )
 
 // Catalog returns the repositories in a registry's catalog.

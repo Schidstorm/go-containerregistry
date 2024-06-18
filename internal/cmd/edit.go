@@ -26,16 +26,16 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/google/go-containerregistry/internal/editor"
-	"github.com/google/go-containerregistry/internal/verify"
-	"github.com/google/go-containerregistry/pkg/crane"
-	"github.com/google/go-containerregistry/pkg/name"
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/mutate"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
-	"github.com/google/go-containerregistry/pkg/v1/static"
-	"github.com/google/go-containerregistry/pkg/v1/tarball"
-	"github.com/google/go-containerregistry/pkg/v1/types"
+	"github.com/schidstorm/go-containerregistry/internal/editor"
+	"github.com/schidstorm/go-containerregistry/internal/verify"
+	"github.com/schidstorm/go-containerregistry/pkg/crane"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/mutate"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/static"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/tarball"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/types"
 	"github.com/spf13/cobra"
 )
 
@@ -214,7 +214,7 @@ func editConfig(ctx context.Context, in io.Reader, out io.Writer, src, dst strin
 
 	// this has to happen before we modify the descriptor (so we can use verify.Descriptor to validate whether m.Config.Data matches m.Config.Digest/Size)
 	if config.Data != nil && verify.Descriptor(config) == nil {
-		// https://github.com/google/go-containerregistry/issues/1552#issuecomment-1452653875
+		// https://github.com/schidstorm/go-containerregistry/issues/1552#issuecomment-1452653875
 		// "if data is non-empty and correct, we should update it"
 		config.Data = edited
 	}

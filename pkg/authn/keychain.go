@@ -24,8 +24,8 @@ import (
 	"github.com/docker/cli/cli/config"
 	"github.com/docker/cli/cli/config/configfile"
 	"github.com/docker/cli/cli/config/types"
-	"github.com/google/go-containerregistry/pkg/name"
 	"github.com/mitchellh/go-homedir"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
 )
 
 // Resource represents a registry or repository that can be authenticated against.
@@ -159,7 +159,7 @@ func (dk *defaultKeychain) ResolveContext(ctx context.Context, target Resource) 
 		}
 		// cf.GetAuthConfig automatically sets the ServerAddress attribute. Since
 		// we don't make use of it, clear the value for a proper "is-empty" test.
-		// See: https://github.com/google/go-containerregistry/issues/1510
+		// See: https://github.com/schidstorm/go-containerregistry/issues/1510
 		cfg.ServerAddress = ""
 		if cfg != empty {
 			break

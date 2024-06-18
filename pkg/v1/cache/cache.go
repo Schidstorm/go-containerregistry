@@ -19,9 +19,9 @@ import (
 	"errors"
 	"io"
 
-	"github.com/google/go-containerregistry/pkg/logs"
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/types"
+	"github.com/schidstorm/go-containerregistry/pkg/logs"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/types"
 )
 
 // Cache encapsulates methods to interact with cached layers.

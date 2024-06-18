@@ -1,17 +1,17 @@
-module github.com/google/go-containerregistry/pkg/authn/k8schain
+module github.com/schidstorm/go-containerregistry/pkg/authn/k8schain
 
 go 1.18
 
 replace (
-	github.com/google/go-containerregistry => ../../../
-	github.com/google/go-containerregistry/pkg/authn/kubernetes => ../kubernetes/
+	github.com/schidstorm/go-containerregistry => ../../../
+	github.com/schidstorm/go-containerregistry/pkg/authn/kubernetes => ../kubernetes/
 )
 
 require (
 	github.com/awslabs/amazon-ecr-credential-helper/ecr-login v0.0.0-20230510185313-f5e39e5f34c7
 	github.com/chrismellard/docker-credential-acr-env v0.0.0-20230304212654-82a0ddb27589
-	github.com/google/go-containerregistry v0.15.2
-	github.com/google/go-containerregistry/pkg/authn/kubernetes v0.0.0-20230516205744-dbecb1de8cfa
+	github.com/schidstorm/go-containerregistry v0.15.2
+	github.com/schidstorm/go-containerregistry/pkg/authn/kubernetes v0.0.0-20230516205744-dbecb1de8cfa
 	k8s.io/api v0.27.1
 	k8s.io/client-go v0.27.1
 )

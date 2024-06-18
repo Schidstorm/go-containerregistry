@@ -1,6 +1,6 @@
 # `authn`
 
-[![GoDoc](https://godoc.org/github.com/google/go-containerregistry/pkg/authn?status.svg)](https://godoc.org/github.com/google/go-containerregistry/pkg/authn)
+[![GoDoc](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/authn?status.svg)](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/authn)
 
 This README outlines how we acquire and use credentials when interacting with a registry.
 
@@ -10,9 +10,9 @@ The official documentation for how authentication with `docker` works is (reason
 
 ## tl;dr for consumers of this package
 
-By default, [`pkg/v1/remote`](https://godoc.org/github.com/google/go-containerregistry/pkg/v1/remote) uses [`Anonymous`](https://godoc.org/github.com/google/go-containerregistry/pkg/authn#Anonymous) credentials (i.e. _none_), which for most registries will only allow read access to public images.
+By default, [`pkg/v1/remote`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/v1/remote) uses [`Anonymous`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/authn#Anonymous) credentials (i.e. _none_), which for most registries will only allow read access to public images.
 
-To use the credentials found in your Docker config file, you can use the [`DefaultKeychain`](https://godoc.org/github.com/google/go-containerregistry/pkg/authn#DefaultKeychain), e.g.:
+To use the credentials found in your Docker config file, you can use the [`DefaultKeychain`](https://godoc.org/github.com/schidstorm/go-containerregistry/pkg/authn#DefaultKeychain), e.g.:
 
 ```go
 package main
@@ -20,9 +20,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/pkg/authn"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
 )
 
 func main() {
@@ -50,10 +50,10 @@ If those are not found, `DefaultKeychain` will look for credentials configured u
 
 ## Emulating Cloud Provider Credential Helpers
 
-[`pkg/v1/google.Keychain`](https://pkg.go.dev/github.com/google/go-containerregistry/pkg/v1/google#Keychain) provides a `Keychain` implementation that emulates [`docker-credential-gcr`](https://github.com/GoogleCloudPlatform/docker-credential-gcr) to find credentials in the environment.
-See [`google.NewEnvAuthenticator`](https://pkg.go.dev/github.com/google/go-containerregistry/pkg/v1/google#NewEnvAuthenticator) and [`google.NewGcloudAuthenticator`](https://pkg.go.dev/github.com/google/go-containerregistry/pkg/v1/google#NewGcloudAuthenticator) for more information.
+[`pkg/v1/google.Keychain`](https://pkg.go.dev/github.com/schidstorm/go-containerregistry/pkg/v1/google#Keychain) provides a `Keychain` implementation that emulates [`docker-credential-gcr`](https://github.com/GoogleCloudPlatform/docker-credential-gcr) to find credentials in the environment.
+See [`google.NewEnvAuthenticator`](https://pkg.go.dev/github.com/schidstorm/go-containerregistry/pkg/v1/google#NewEnvAuthenticator) and [`google.NewGcloudAuthenticator`](https://pkg.go.dev/github.com/schidstorm/go-containerregistry/pkg/v1/google#NewGcloudAuthenticator) for more information.
 
-To emulate other credential helpers without requiring them to be available as executables, [`NewKeychainFromHelper`](https://pkg.go.dev/github.com/google/go-containerregistry/pkg/authn#NewKeychainFromHelper) provides an adapter that takes a Go implementation satisfying a subset of the [`credentials.Helper`](https://pkg.go.dev/github.com/docker/docker-credential-helpers/credentials#Helper) interface, and makes it available as a `Keychain`.
+To emulate other credential helpers without requiring them to be available as executables, [`NewKeychainFromHelper`](https://pkg.go.dev/github.com/schidstorm/go-containerregistry/pkg/authn#NewKeychainFromHelper) provides an adapter that takes a Go implementation satisfying a subset of the [`credentials.Helper`](https://pkg.go.dev/github.com/docker/docker-credential-helpers/credentials#Helper) interface, and makes it available as a `Keychain`.
 
 This means that you can emulate, for example, [Amazon ECR's `docker-credential-ecr-login` credential helper](https://github.com/awslabs/amazon-ecr-credential-helper) using the same implementation:
 
@@ -62,8 +62,8 @@ import (
 	ecr "github.com/awslabs/amazon-ecr-credential-helper/ecr-login"
 	"github.com/awslabs/amazon-ecr-credential-helper/ecr-login/api"
 
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/pkg/authn"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
 )
 
 func main() {
@@ -83,8 +83,8 @@ Likewise, you can emulate [Azure's ACR `docker-credential-acr-env` credential he
 import (
 	"github.com/chrismellard/docker-credential-acr-env/pkg/credhelper"
 
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
+	"github.com/schidstorm/go-containerregistry/pkg/authn"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote"
 )
 
 func main() {
@@ -102,7 +102,7 @@ func main() {
 
 ## Using Multiple `Keychain`s
 
-[`NewMultiKeychain`](https://pkg.go.dev/github.com/google/go-containerregistry/pkg/authn#NewMultiKeychain) allows you to specify multiple `Keychain` implementations, which will be checked in order when credentials are needed.
+[`NewMultiKeychain`](https://pkg.go.dev/github.com/schidstorm/go-containerregistry/pkg/authn#NewMultiKeychain) allows you to specify multiple `Keychain` implementations, which will be checked in order when credentials are needed.
 
 For example:
 
@@ -130,7 +130,7 @@ If no implementations are able to provide credentials, `Anonymous` credentials w
 
 What follows attempts to gather useful information about Docker's config.json and make it available in one place.
 
-If you have questions, please [file an issue](https://github.com/google/go-containerregistry/issues/new).
+If you have questions, please [file an issue](https://github.com/schidstorm/go-containerregistry/issues/new).
 
 ### Plaintext
 
@@ -316,7 +316,7 @@ This happens when a credential helper returns a response with the
 set to `<token>` (no, that's not a placeholder, the literal string `"<token>"`).
 It is unclear why: [moby/moby#36926](https://github.com/moby/moby/issues/36926).
 
-We only support the oauth2 `grant_type` for `refresh_token` ([#629](https://github.com/google/go-containerregistry/issues/629)),
+We only support the oauth2 `grant_type` for `refresh_token` ([#629](https://github.com/schidstorm/go-containerregistry/issues/629)),
 since it's impossible to determine from the registry response whether we should
 use oauth, and the token method for authentication is widely implemented by
 registries.

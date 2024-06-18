@@ -27,15 +27,15 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/google/go-containerregistry/internal/redact"
-	"github.com/google/go-containerregistry/internal/retry"
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/logs"
-	"github.com/google/go-containerregistry/pkg/name"
-	v1 "github.com/google/go-containerregistry/pkg/v1"
-	"github.com/google/go-containerregistry/pkg/v1/remote/transport"
-	"github.com/google/go-containerregistry/pkg/v1/stream"
-	"github.com/google/go-containerregistry/pkg/v1/types"
+	"github.com/schidstorm/go-containerregistry/internal/redact"
+	"github.com/schidstorm/go-containerregistry/internal/retry"
+	"github.com/schidstorm/go-containerregistry/pkg/authn"
+	"github.com/schidstorm/go-containerregistry/pkg/logs"
+	"github.com/schidstorm/go-containerregistry/pkg/name"
+	v1 "github.com/schidstorm/go-containerregistry/pkg/v1"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/remote/transport"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/stream"
+	"github.com/schidstorm/go-containerregistry/pkg/v1/types"
 )
 
 // Taggable is an interface that enables a manifest PUT (e.g. for tagging).
@@ -211,7 +211,7 @@ func (w *writer) initiateUpload(ctx context.Context, from, mount, origin string)
 	resp, err := w.client.Do(req.WithContext(ctx))
 	if err != nil {
 		if from != "" {
-			// https://github.com/google/go-containerregistry/issues/1679
+			// https://github.com/schidstorm/go-containerregistry/issues/1679
 			logs.Warn.Printf("retrying without mount: %v", err)
 			return w.initiateUpload(ctx, "", "", "")
 		}
@@ -221,7 +221,7 @@ func (w *writer) initiateUpload(ctx context.Context, from, mount, origin string)
 
 	if err := transport.CheckError(resp, http.StatusCreated, http.StatusAccepted); err != nil {
 		if from != "" {
-			// https://github.com/google/go-containerregistry/issues/1404
+			// https://github.com/schidstorm/go-containerregistry/issues/1404
 			logs.Warn.Printf("retrying without mount: %v", err)
 			return w.initiateUpload(ctx, "", "", "")
 		}
@@ -370,7 +370,7 @@ func (w *writer) uploadOne(ctx context.Context, l v1.Layer) error {
 			origin = ml.Reference.Context().RegistryStr()
 
 			// This keeps breaking with DockerHub.
-			// https://github.com/google/go-containerregistry/issues/1741
+			// https://github.com/schidstorm/go-containerregistry/issues/1741
 			if w.repo.RegistryStr() == name.DefaultRegistry && origin != w.repo.RegistryStr() {
 				from = ""
 				origin = ""
