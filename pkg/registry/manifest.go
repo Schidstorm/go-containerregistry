@@ -39,16 +39,89 @@ type listTags struct {
 	Tags []string `json:"tags"`
 }
 
-type manifest struct {
-	contentType string
-	blob        []byte
+type Manifest struct {
+	ContentType string
+	Blob        []byte
+}
+
+type ManifestsStore interface {
+	Get(repo, tag string) (Manifest, bool)
+	Set(repo, tag string, m Manifest)
+	Delete(repo, tag string)
+	ListTags(repo string) []string
+	ListRepos() []string
+}
+
+type inMemoryManifests struct {
+	// maps repo -> manifest tag/digest -> manifest
+	manifests map[string]map[string]Manifest
+}
+
+func newInMemoryManifests() *inMemoryManifests {
+	return &inMemoryManifests{
+		manifests: map[string]map[string]Manifest{},
+	}
+}
+
+func (m *inMemoryManifests) Get(repo, tag string) (Manifest, bool) {
+	tags, ok := m.manifests[repo]
+	if !ok {
+		return Manifest{}, false
+	}
+	mf, ok := tags[tag]
+	return mf, ok
+}
+
+func (m *inMemoryManifests) Set(repo, tag string, mf Manifest) {
+	if _, ok := m.manifests[repo]; !ok {
+		m.manifests[repo] = map[string]Manifest{}
+	}
+	m.manifests[repo][tag] = mf
+}
+
+func (m *inMemoryManifests) Delete(repo, tag string) {
+	if _, ok := m.manifests[repo]; !ok {
+		return
+	}
+
+	delete(m.manifests[repo], tag)
+}
+
+func (m *inMemoryManifests) ListTags(repo string) []string {
+	tags, ok := m.manifests[repo]
+	if !ok {
+		return nil
+	}
+	var out []string
+	for tag := range tags {
+		out = append(out, tag)
+	}
+	return out
+}
+
+func (m *inMemoryManifests) ListRepos() []string {
+	var out []string
+	for repo := range m.manifests {
+		out = append(out, repo)
+	}
+	return out
 }
 
 type manifests struct {
-	// maps repo -> manifest tag/digest -> manifest
-	manifests map[string]map[string]manifest
-	lock      sync.RWMutex
-	log       *log.Logger
+	store ManifestsStore
+	lock  sync.RWMutex
+	log   *log.Logger
+}
+
+func createManifests(log *log.Logger, m ManifestsStore) manifests {
+	if m == nil {
+		m = newInMemoryManifests()
+	}
+
+	return manifests{
+		store: m,
+		log:   log,
+	}
 }
 
 func isManifest(req *http.Request) bool {
@@ -102,15 +175,7 @@ func (m *manifests) handle(resp http.ResponseWriter, req *http.Request) *regErro
 		m.lock.RLock()
 		defer m.lock.RUnlock()
 
-		c, ok := m.manifests[repo]
-		if !ok {
-			return &regError{
-				Status:  http.StatusNotFound,
-				Code:    "NAME_UNKNOWN",
-				Message: "Unknown name",
-			}
-		}
-		m, ok := c[target]
+		m, ok := m.store.Get(repo, target)
 		if !ok {
 			return &regError{
 				Status:  http.StatusNotFound,
@@ -119,26 +184,19 @@ func (m *manifests) handle(resp http.ResponseWriter, req *http.Request) *regErro
 			}
 		}
 
-		h, _, _ := v1.SHA256(bytes.NewReader(m.blob))
+		h, _, _ := v1.SHA256(bytes.NewReader(m.Blob))
 		resp.Header().Set("Docker-Content-Digest", h.String())
-		resp.Header().Set("Content-Type", m.contentType)
-		resp.Header().Set("Content-Length", fmt.Sprint(len(m.blob)))
+		resp.Header().Set("Content-Type", m.ContentType)
+		resp.Header().Set("Content-Length", fmt.Sprint(len(m.Blob)))
 		resp.WriteHeader(http.StatusOK)
-		io.Copy(resp, bytes.NewReader(m.blob))
+		io.Copy(resp, bytes.NewReader(m.Blob))
 		return nil
 
 	case http.MethodHead:
 		m.lock.RLock()
 		defer m.lock.RUnlock()
 
-		if _, ok := m.manifests[repo]; !ok {
-			return &regError{
-				Status:  http.StatusNotFound,
-				Code:    "NAME_UNKNOWN",
-				Message: "Unknown name",
-			}
-		}
-		m, ok := m.manifests[repo][target]
+		m, ok := m.store.Get(repo, target)
 		if !ok {
 			return &regError{
 				Status:  http.StatusNotFound,
@@ -147,10 +205,10 @@ func (m *manifests) handle(resp http.ResponseWriter, req *http.Request) *regErro
 			}
 		}
 
-		h, _, _ := v1.SHA256(bytes.NewReader(m.blob))
+		h, _, _ := v1.SHA256(bytes.NewReader(m.Blob))
 		resp.Header().Set("Docker-Content-Digest", h.String())
-		resp.Header().Set("Content-Type", m.contentType)
-		resp.Header().Set("Content-Length", fmt.Sprint(len(m.blob)))
+		resp.Header().Set("Content-Type", m.ContentType)
+		resp.Header().Set("Content-Length", fmt.Sprint(len(m.Blob)))
 		resp.WriteHeader(http.StatusOK)
 		return nil
 
@@ -159,16 +217,16 @@ func (m *manifests) handle(resp http.ResponseWriter, req *http.Request) *regErro
 		io.Copy(b, req.Body)
 		h, _, _ := v1.SHA256(bytes.NewReader(b.Bytes()))
 		digest := h.String()
-		mf := manifest{
-			blob:        b.Bytes(),
-			contentType: req.Header.Get("Content-Type"),
+		mf := Manifest{
+			Blob:        b.Bytes(),
+			ContentType: req.Header.Get("Content-Type"),
 		}
 
 		// If the manifest is a manifest list, check that the manifest
 		// list's constituent manifests are already uploaded.
 		// This isn't strictly required by the registry API, but some
 		// registries require this.
-		if types.MediaType(mf.contentType).IsIndex() {
+		if types.MediaType(mf.ContentType).IsIndex() {
 			if err := func() *regError {
 				m.lock.RLock()
 				defer m.lock.RUnlock()
@@ -186,7 +244,7 @@ func (m *manifests) handle(resp http.ResponseWriter, req *http.Request) *regErro
 						continue
 					}
 					if desc.MediaType.IsIndex() || desc.MediaType.IsImage() {
-						if _, found := m.manifests[repo][desc.Digest.String()]; !found {
+						if _, found := m.store.Get(repo, desc.Digest.String()); !found {
 							return &regError{
 								Status:  http.StatusNotFound,
 								Code:    "MANIFEST_UNKNOWN",
@@ -207,14 +265,10 @@ func (m *manifests) handle(resp http.ResponseWriter, req *http.Request) *regErro
 		m.lock.Lock()
 		defer m.lock.Unlock()
 
-		if _, ok := m.manifests[repo]; !ok {
-			m.manifests[repo] = make(map[string]manifest, 2)
-		}
-
 		// Allow future references by target (tag) and immutable digest.
 		// See https://docs.docker.com/engine/reference/commandline/pull/#pull-an-image-by-digest-immutable-identifier.
-		m.manifests[repo][digest] = mf
-		m.manifests[repo][target] = mf
+		m.store.Set(repo, digest, mf)
+		m.store.Set(repo, target, mf)
 		resp.Header().Set("Docker-Content-Digest", digest)
 		resp.WriteHeader(http.StatusCreated)
 		return nil
@@ -222,24 +276,8 @@ func (m *manifests) handle(resp http.ResponseWriter, req *http.Request) *regErro
 	case http.MethodDelete:
 		m.lock.Lock()
 		defer m.lock.Unlock()
-		if _, ok := m.manifests[repo]; !ok {
-			return &regError{
-				Status:  http.StatusNotFound,
-				Code:    "NAME_UNKNOWN",
-				Message: "Unknown name",
-			}
-		}
 
-		_, ok := m.manifests[repo][target]
-		if !ok {
-			return &regError{
-				Status:  http.StatusNotFound,
-				Code:    "MANIFEST_UNKNOWN",
-				Message: "Unknown manifest",
-			}
-		}
-
-		delete(m.manifests[repo], target)
+		m.store.Delete(repo, target)
 		resp.WriteHeader(http.StatusAccepted)
 		return nil
 
@@ -261,17 +299,8 @@ func (m *manifests) handleTags(resp http.ResponseWriter, req *http.Request) *reg
 		m.lock.RLock()
 		defer m.lock.RUnlock()
 
-		c, ok := m.manifests[repo]
-		if !ok {
-			return &regError{
-				Status:  http.StatusNotFound,
-				Code:    "NAME_UNKNOWN",
-				Message: "Unknown name",
-			}
-		}
-
 		var tags []string
-		for tag := range c {
+		for _, tag := range m.store.ListTags(repo) {
 			if !strings.Contains(tag, "sha256:") {
 				tags = append(tags, tag)
 			}
@@ -336,7 +365,7 @@ func (m *manifests) handleCatalog(resp http.ResponseWriter, req *http.Request) *
 		var repos []string
 		countRepos := 0
 		// TODO: implement pagination
-		for key := range m.manifests {
+		for _, key := range m.store.ListRepos() {
 			if countRepos >= n {
 				break
 			}
@@ -391,21 +420,14 @@ func (m *manifests) handleReferrers(resp http.ResponseWriter, req *http.Request)
 	m.lock.RLock()
 	defer m.lock.RUnlock()
 
-	digestToManifestMap, repoExists := m.manifests[repo]
-	if !repoExists {
-		return &regError{
-			Status:  http.StatusNotFound,
-			Code:    "NAME_UNKNOWN",
-			Message: "Unknown name",
-		}
-	}
-
+	digests := m.store.ListTags(repo)
 	im := v1.IndexManifest{
 		SchemaVersion: 2,
 		MediaType:     types.OCIImageIndex,
 		Manifests:     []v1.Descriptor{},
 	}
-	for digest, manifest := range digestToManifestMap {
+	for _, digest := range digests {
+		manifest, _ := m.store.Get(repo, digest)
 		h, err := v1.NewHash(digest)
 		if err != nil {
 			continue
@@ -413,7 +435,7 @@ func (m *manifests) handleReferrers(resp http.ResponseWriter, req *http.Request)
 		var refPointer struct {
 			Subject *v1.Descriptor `json:"subject"`
 		}
-		json.Unmarshal(manifest.blob, &refPointer)
+		json.Unmarshal(manifest.Blob, &refPointer)
 		if refPointer.Subject == nil {
 			continue
 		}
@@ -427,10 +449,10 @@ func (m *manifests) handleReferrers(resp http.ResponseWriter, req *http.Request)
 				MediaType string `json:"mediaType"`
 			} `json:"config"`
 		}
-		json.Unmarshal(manifest.blob, &imageAsArtifact)
+		json.Unmarshal(manifest.Blob, &imageAsArtifact)
 		im.Manifests = append(im.Manifests, v1.Descriptor{
-			MediaType:    types.MediaType(manifest.contentType),
-			Size:         int64(len(manifest.blob)),
+			MediaType:    types.MediaType(manifest.ContentType),
+			Size:         int64(len(manifest.Blob)),
 			Digest:       h,
 			ArtifactType: imageAsArtifact.Config.MediaType,
 		})

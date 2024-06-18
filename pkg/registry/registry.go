@@ -97,10 +97,7 @@ func New(opts ...Option) http.Handler {
 			uploads:     map[string][]byte{},
 			log:         log.New(os.Stderr, "", log.LstdFlags),
 		},
-		manifests: manifests{
-			manifests: map[string]map[string]manifest{},
-			log:       log.New(os.Stderr, "", log.LstdFlags),
-		},
+		manifests: createManifests(log.New(os.Stderr, "", log.LstdFlags), nil),
 	}
 	for _, o := range opts {
 		o(r)
@@ -140,5 +137,11 @@ func WithWarning(prob float64, msg string) Option {
 func WithBlobHandler(h BlobHandler) Option {
 	return func(r *registry) {
 		r.blobs.blobHandler = h
+	}
+}
+
+func WithCustomManifestsStore(store ManifestsStore) Option {
+	return func(r *registry) {
+		r.manifests.store = store
 	}
 }
